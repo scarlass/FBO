@@ -5,34 +5,13 @@ const wpHtml = require("html-webpack-plugin");
 const {merge} = require("webpack-merge")
 const { argv } = process;
 
-const all = merge(require("./build.comp"), require("./build.css"));
+const all = merge(require("./util/build.comp"), require("./util/build.css"));
 
 const fMode = argv.findIndex(i => i === "--mode");
 let prod = false
 if(fMode !== -1) {
   prod = argv[fMode + 1] === "production"
 }
-
-
-function changeSW() {
-  fs.readFile("./sw.js", { encoding: "utf8" }, function (err, data) {
-    if (err) throw err;
-
-    data = data
-      .replace(/(\/dist\/style)/g, "/style")
-      .replace(/(\/dist)/g, "/js");
-
-    fs.writeFile("./dist/sw.js", data, function (err) {
-      if (err) throw err;
-    });
-  });
-}
-function copyAsset() {
-  fs.copyFile("./assets", "./dist/assets", function (err) {
-    if (err) throw err;
-  })
-}
-
 
 module.exports = merge(all, {
   output: {
@@ -48,6 +27,12 @@ module.exports = merge(all, {
     new wpCallback({
       name: "wp-event",
       listeners: {
+        buildStart: function () {
+          let u = require("./util/utils");
+          // copyAsset();
+          u.copySw();
+          u.copyDir("./assets");
+        },
         compileEnd: function () {
           // fs.renameSync("file://" + path.join(__dirname, "sw.js"), "file://" + path.join(__dirname, "dist", "sw.js"));
           console.time("delete style.js");
@@ -58,8 +43,6 @@ module.exports = merge(all, {
           fs.unlinkSync("./dist/js/material.js");
           console.timeEnd("delete material.js");
 
-          changeSW();
-          copyAsset();
         }
       }
     })
