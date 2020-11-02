@@ -27,24 +27,18 @@ module.exports = merge(all, {
     new wpCallback({
       name: "wp-event",
       listeners: {
-        buildStart: function () {
-          let u = require("./util/utils");
-          // copyAsset();
-          u.copySw();
-          u.copyDir("./assets");
-        },
         compileEnd: function () {
-          // fs.renameSync("file://" + path.join(__dirname, "sw.js"), "file://" + path.join(__dirname, "dist", "sw.js"));
-          console.time("delete style.js");
-          fs.unlinkSync("./dist/js/style.js");
-          console.timeEnd("delete style.js");
-
-          console.time("delete material.js");
-          fs.unlinkSync("./dist/js/material.js");
-          console.timeEnd("delete material.js");
-
+          let u = require("./util/utils");
+          u.deleteFiles(
+            "./dist/js/material.js",
+            "./dist/js/style.js",
+            "./dist/js/app.js.LICENSE.txt",
+          )
+          u.copySw();
+          u.copyDir("./assets", "./dist/assets");
         }
-      }
+      },
+
     })
   ] : null
 });

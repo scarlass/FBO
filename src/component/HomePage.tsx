@@ -1,5 +1,6 @@
 import React from "react";
-import { PagesBaseProps, StatusTab, RandomMatch } from "./Utils";
+import { PagesBaseProps, StatusTab } from "./Utils";
+import RandomMatch from "./RandomMatch"
 import { Row } from "react-materialize";
 import cx from "classnames";
 
