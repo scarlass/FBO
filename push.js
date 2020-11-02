@@ -1,6 +1,6 @@
 const
   wp = require("web-push"),
-  keys = require("./assets/keys.json")
+  keys = require("./keys.json")
 ;
 
 wp.setVapidDetails(

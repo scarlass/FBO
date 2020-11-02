@@ -2,13 +2,9 @@ import { reqs as req, utils, fetch } from "./mix";
 import * as sw from "./registerSW";
 import { EventEmitter } from "events";
 
-if (!utils.isUndefined(goalSW) && goalSW.runRegist) {
-	sw.registerSW().then((res) => {
-		sw.registerSubs({
-			logSubKeys: goalSW.logging,
-		});
-	});
-}
+sw.registerSW().then((res) => {
+  sw.registerSubs({ logSubKeys: true });
+});
 
 const {
 	isArray: isArr,

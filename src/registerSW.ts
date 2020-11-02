@@ -14,7 +14,12 @@ export async function registerSW() {
 
 export function registerSubs(options?: { logSubKeys?: boolean }) {
   return (async function() {
-    let keys: KeysJSON = await (await fetch("./assets/keys.json")).json();
+    let keys = {
+      "vapidKeys": {
+        "publicKey": "BJuiN6oZ0aHTruShAtM-CvmS1xF0tcQcUoR6f4O3nznSYWHd1lzhQKv_VHBput4Vk01JgbKhwsFrKOWlKRA8ExY",
+        "privateKey": "LlbeBT8WTJenmswed2uQ2Gbnx2kBmG5NtOSCA1Oc7UQ"
+      }
+    }
 
     return Notification.requestPermission()
     .then( async (res) => {
