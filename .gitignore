@@ -2,6 +2,7 @@
 /dist
 /public
 .firebase*
+**.zip
 firebase.json
 package-lock.json
 todo.txt

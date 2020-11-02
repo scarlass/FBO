@@ -1,2 +1,2 @@
 firebase: https://pwa-sub3-e2984.web.app
-git:
+git: https://github.com/scarlass/FBO.git
