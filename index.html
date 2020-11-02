@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FBO</title>
+
+  <link rel="icon" type='image/x-icon' href='./assets/favicon.ico' />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="./assets/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./assets/apple-icon-144x144.png">
+
+  <link rel="manifest" href="./assets/manifest.json">
+
+  <link rel="stylesheet" href="./dist/style/material.css">
+  <link rel="stylesheet" href="./dist/style/style.css">
+
+  <!-- <script>
+    // if("serviceWorker" in navigator) {
+    //   console.log("Registering service worker...")
+    //   navigator.serviceWorker.register("sw.js")
+    //   .then( res => {
+    //     console.log("serviceWorker registered.");
+    //   })
+    //   .catch( err => {
+    //     console.error("failed to register serviceWorker", err);
+    //   });
+
+    //   fetch("./assets/keys.json")
+    //   .then(res => res.json())
+    //   .then(keys => {
+    //     Notification.requestPermission()
+    //     .then( res => {
+    //       if(res === "denied" || res === "default") {
+    //         console.warn("Notification disabled");
+    //         return;
+    //       }
+
+    //       if("PushManager" in window) {
+    //         navigator.serviceWorker.ready
+    //         .then((reg) => {
+    //           function base64ToUint8Array(b64) {
+    //             const
+    //               pad = "=".repeat((4 - b64.length % 4) % 4),
+    //               base64 = (b64 + pad).replace(/-/g, "+").replace(/_/g, "/"),
+    //               rawData = window.atob(base64),
+    //               arr = new Uint8Array(rawData.length);
+
+    //             for(let i = 0; i < rawData.length; i++) {
+    //               arr[i] = rawData.charCodeAt(i);
+    //             }
+
+    //             return arr;
+    //           }
+
+    //           const vapidKeys = keys.vapidKeys
+    //           reg.pushManager.subscribe({
+    //             userVisibleOnly: true,
+    //             applicationServerKey: base64ToUint8Array(vapidKeys.publicKey)
+    //           })
+    //           .then( subs => {
+
+    //             function encr(type) {
+    //               return btoa(String.fromCharCode.apply(
+    //                 null,
+    //                 new Uint8Array(subs.getKey(type))
+    //               ));
+    //             }
+
+    //             console.log(subs)
+
+    //             console.log("Subscribe endpoint: \n", subs.endpoint);
+    //             console.log("Subscribe p256dh key: \n", encr("p256dh"));
+    //             console.log("Subscribe auth key: \n", encr("auth"));
+
+    //             let t = setInterval(() => {
+    //               if(typeof goal !== "undefined") {
+
+    //                 goal.Subs = {
+    //                   endpoint: subs.endpoint,
+    //                   p256dh: encr("p256dh"),
+    //                   auth: encr("auth")
+    //                 };
+    //                 clearInterval(t);
+    //               }
+    //             }, 100)
+    //           });
+
+    //         });
+    //       }
+    //     })
+    //   })
+
+    // }
+    // else {
+    //   console.warn("serviceWorker: not supported");
+    // }
+  </script> -->
+
+  <script>
+    window.goalSW = {
+      runRegist: true,
+      logging: true
+    };
+  </script>
+
+  <script src="./dist/goal.js"></script>
+  <script defer src="./dist/app.js"></script>
+
+</head>
+<body>
+
+  <div id="root"></div>
+
+</body>
+</html>
