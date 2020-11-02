@@ -1,5 +1,7 @@
 /node_modules
 /dist
 /public
+.firebase*
+firebase.json
 package-lock.json
 todo.txt
